@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+}
+
+.container{
+    width:900px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.header{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+    border-radius:8px;
+    margin-bottom:25px;
+}
+
+h2{
+    margin-bottom:5px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:5px;
+}
+
+input[type=text],select,textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
+}
+
+textarea{
+    resize:none;
+    height:80px;
+}
+
+.radio{
+    margin-top:8px;
+}
+
+.buttons{
+    margin-top:20px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    margin-right:10px;
+}
+
+.add{
+    background:#198754;
+}
+
+.delete{
+    background:#dc3545;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+table{
+    width:100%;
+    margin-top:30px;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#0d6efd;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+table tr:nth-child(even){
+    background:#f8f9fa;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:gray;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h2>📚 Library Management System</h2>
+<p>Manage Books Easily</p>
+</div>
+
+<form action="/add" method="post">
+
+<div class="form-group">
+<label>Book ID</label>
+<input type="text" name="bookid" required>
+</div>
+
+<div class="form-group">
+<label>Book Name</label>
+<input type="text" name="bookname" required>
+</div>
+
+<div class="form-group">
+<label>Author Name</label>
+<input type="text" name="author" required>
+</div>
+
+<div class="form-group">
+<label>Category</label>
+
+<select name="category">
+<option>Science</option>
+<option>Technology</option>
+<option>History</option>
+<option>Novel</option>
+<option>Education</option>
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Availability</label>
+
+<div class="radio">
+<input type="radio" name="availability" value="Available" checked>
+Available
+
+<input type="radio" name="availability" value="Not Available">
+Not Available
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Description</label>
+
+<textarea name="description"></textarea>
+
+</div>
+
+<div class="buttons">
+
+<button class="add" type="submit">
+➕ Add Book
+</button>
+
+</form>
+
+<form action="/delete" method="post" style="display:inline;">
+
+<input type="text" name="bookid" placeholder="Book ID to Delete" style="width:220px;padding:10px;">
+
+<button class="delete" type="submit">
+🗑 Delete Book
+</button>
+
+</form>
+
+</div>
+
+<h2 style="margin-top:30px;">📖 View Books</h2>
+
+<table>
+
+<tr>
+<th>Book ID</th>
+<th>Book Name</th>
+<th>Author</th>
+<th>Category</th>
+<th>Availability</th>
+<th>Description</th>
+</tr>
+
+{% for book in books %}
+
+<tr>
+<td>{{book.id}}</td>
+<td>{{book.name}}</td>
+<td>{{book.author}}</td>
+<td>{{book.category}}</td>
+<td>{{book.availability}}</td>
+<td>{{book.description}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<div class="footer">
+Library Management System | Python Flask Project
+</div>
+
+</div>
+
+</body>
+</html>
